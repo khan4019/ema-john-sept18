@@ -1,0 +1,26 @@
+<p>I am happy because: {{happyText}}</p>
+<button (click)="makeHappier()">Make me happer</button>
+<ul>
+  <li *ngFor="let todo of todos">{{todo}}</li>
+</ul>
+<input type="text" [(ngModel)]="salary">
+<h2>{{salary | number}}</h2>
+
+<p>
+  <span>total number of users: <strong>{{userCount | number}}</strong></span>
+</p>
+
+    
+    <mat-card class="user-card" *ngFor="let user  of users">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{user.login}}</mat-card-title>
+          <mat-card-subtitle>{{user.score | number}}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="user-image" mat-card-image [src]="user.avatar_url" alt="Photo of a Shiba Inu">
+        <mat-card-actions>
+          <button mat-raised-button color="primary">LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+

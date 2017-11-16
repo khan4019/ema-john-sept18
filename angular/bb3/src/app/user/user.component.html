@@ -1,0 +1,24 @@
+<p>
+  user works! so i dont have to work.
+</p>
+<h2>{{happyText}}</h2>
+<ul>
+  <li *ngFor="let todo of todos">{{todo}}</li>
+</ul>
+
+<input type="text" [(ngModel)]="searchText">
+<h2>{{searchText}}</h2>
+<button (click)="loadUser()" mat-raised-button color="primary">load user</button>
+<h4>user count: {{userCount}}</h4>
+
+<mat-card *ngFor="let user of users" class="user-card">
+  <mat-card-header>
+    <mat-card-title>{{user.login}}</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="user.avatar_url">
+  <mat-card-actions>
+    <button mat-raised-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

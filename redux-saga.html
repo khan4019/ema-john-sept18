@@ -134,6 +134,72 @@
 				</section>
 			</section>
 			<section>
+				<section>
+					<h2>ES6 Generator</h2>
+					<pre><code>
+function *foo() {
+	yield 1;
+	yield 2;
+	yield 3;
+	yield 4;
+	yield 5;
+}
+					</code></pre>
+					<pre class="fragment"><code>
+var abc = foo();
+abc.next(); //{value: 1, done: false}	
+abc.next(); //{value: 2, done: false}	
+abc.next(); //{value: 3, done: false}	
+abc.next(); //{value: 4, done: false}	
+abc.next(); //{value: 5, done: false}	
+abc.next(); //{value: undefined, done: true}					
+					</code></pre>
+				</section>
+			</section>
+			<section>
+				<section>
+					<pre><code>
+// action
+const updateTitleAPI = fetch(...).then(res => res.json());
+const updateTitle = article => ({ type: UPDATE_TITLE, article });
+					</code></pre>
+					<pre><code>// saga
+function* updateTitle() {
+  try {
+    yield call(updateTitleAPI, action.article.title);
+    yield put({ type: UPDATE_TITLE_SUCCESS });
+    yield fork(fetchArticles);
+  } catch(err) {
+    yield put({ type: UPDATE_TITLE_FAILED });
+  }
+}
+function* watchUpdateTitle() {
+   yield takeLatest(UPDATE_TITLE, updateTitle);
+}
+					</code></pre>
+				</section>
+				<section>
+					<h4>The workflow</h4>
+					<ol class="postList">
+						<li>Keep watching</li>
+						<li>Component dispatch
+							<code>UPDATE_TITLE</code> action</li>
+						<li>Run
+							<code>updateTitle</code> task(take effect)</li>
+						<li>Call
+							<code>updateTitleAPI</code> async request(call effect)</li>
+						<li class="fragment">Change to different stage
+							<code>UPDATE_TITLE_SUCCESS</code>,
+							<code>UPDATE_TITLE_FAILED</code>(put effect)</li>
+						<li class="fragment">Refresh list
+							<code>FETCH_LIST</code>(fork effect)</li>
+						<li class="fragment">Reducer handle state</li>
+						<li class="fragment">Component display state</li>
+						<li class="fragment">Back to 1.</li>
+					</ol>
+				</section>
+			</section>
+			<section>
 				<pre class="javascript js"><code data-trim>
 import { call, put } from 'redux-saga/effects'
 

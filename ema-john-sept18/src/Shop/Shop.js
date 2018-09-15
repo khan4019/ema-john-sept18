@@ -3,7 +3,7 @@ import fakeData from '../fakeData/index';
 import Product from '../Product/Product';
 import './Shop.css'
 import Cart from '../Cart/Cart';
-import {addToDatabaseCart} from '../utility/local-storage';
+import {addToDatabaseCart, getDatabaseCart} from '../utility/local-storage';
 
 class Shop extends Component {
     constructor(){
@@ -17,6 +17,16 @@ class Shop extends Component {
     componentDidMount() {
         const first10 = fakeData.slice(0,10);
         this.setState({products:first10});
+
+        // 
+        const storedCart = getDatabaseCart();
+        const savedCart = [];
+        for(let id in storedCart){
+            const product = fakeData.find(prd => prd.id === id);
+            product.quantity = storedCart[id];
+            savedCart.push(product);
+        }
+        this.setState({cart:savedCart});
     }
 
     handleAddToCart = (product) =>{

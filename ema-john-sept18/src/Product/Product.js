@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import './Product.css'
 import StarRatingComponent from 'react-star-rating-component';
 
+
+
 class Product extends Component {
     render() {
         const product = this.props.product;
-        
+        const addButton = <button onClick={() => this.props.addToCart(product)}>Add to Cart</button>;
+        const removeButton = <button onClick={() => this.props.handleRemoveItem(product)}>Remove item</button>;
+        const btn = (this.props.isReview) ? removeButton : addButton;
         return (
             <div className="product">
                 <div>
@@ -22,7 +26,7 @@ class Product extends Component {
                         />
 
                     <br/>
-                    <button onClick={() => this.props.addToCart(product)}>Add to Cart</button>
+                    {btn}
                 </div>
                 
             </div>

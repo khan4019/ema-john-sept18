@@ -1,0 +1,13 @@
+.product{
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+button{
+    width: 150px;
+    height: 30px;
+    background-color: goldenrod;
+    border-radius: 5px;
+    border: 1px solid black;
+}

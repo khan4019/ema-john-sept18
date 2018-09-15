@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import fakeData from '../fakeData/index';
 import Product from '../Product/Product';
+import './Shop.css'
 
 class Shop extends Component {
     constructor(){
         super();
         this.state = {
-            products:[]
+            products:[],
+            cart:[]
         }
     }
 
@@ -15,6 +17,10 @@ class Shop extends Component {
         this.setState({products:first10});
         console.log(first10);
     }
+
+    handleAddToCart = () =>{
+        console.log('clicked');
+    }
     
     render() {
         return (
@@ -22,7 +28,10 @@ class Shop extends Component {
                 <div className="product-container">
                     <h1>Buy whatever you want</h1>
                     {
-                        this.state.products.map(prd=><Product product={prd} key={prd.id}></Product>)
+                        this.state.products.map(prd=><Product 
+                            product={prd}
+                            addToCart={this.handleAddToCart}
+                            key={prd.id}></Product>)
                     }
                 </div>
                 <div className="cart-container">

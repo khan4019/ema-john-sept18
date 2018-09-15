@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fakeData from '../fakeData/index';
 import Product from '../Product/Product';
 import './Shop.css'
+import Cart from '../Cart/Cart';
 
 class Shop extends Component {
     constructor(){
@@ -36,7 +37,7 @@ class Shop extends Component {
                     }
                 </div>
                 <div className="cart-container">
-                    <h4>Order Summary</h4>
+                   <Cart cart={this.state.cart}></Cart>
                 </div>
                 
             </div>

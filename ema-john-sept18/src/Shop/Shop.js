@@ -3,6 +3,7 @@ import fakeData from '../fakeData/index';
 import Product from '../Product/Product';
 import './Shop.css'
 import Cart from '../Cart/Cart';
+import {addToDatabaseCart} from '../utility/local-storage';
 
 class Shop extends Component {
     constructor(){
@@ -16,12 +17,16 @@ class Shop extends Component {
     componentDidMount() {
         const first10 = fakeData.slice(0,10);
         this.setState({products:first10});
-        
     }
 
     handleAddToCart = (product) =>{
         const newCart = [...this.state.cart, product];
         this.setState({cart:newCart});
+
+        const quantity = newCart
+            .filter( prd => prd.id === product.id).length;
+
+        addToDatabaseCart(product.id, quantity);
     }
     
     render() {

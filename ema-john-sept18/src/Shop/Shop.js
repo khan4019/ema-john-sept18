@@ -15,11 +15,12 @@ class Shop extends Component {
     componentDidMount() {
         const first10 = fakeData.slice(0,10);
         this.setState({products:first10});
-        console.log(first10);
+        
     }
 
-    handleAddToCart = () =>{
-        console.log('clicked');
+    handleAddToCart = (product) =>{
+        const newCart = [...this.state.cart, product];
+        this.setState({cart:newCart});
     }
     
     render() {

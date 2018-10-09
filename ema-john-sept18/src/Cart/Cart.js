@@ -18,6 +18,8 @@ class Cart extends Component {
                  <h4>Order Summary</h4>
                 <p>Items Ordered: {this.props.cart.length}</p>
                 <p>Total Price: {totalPrice2.toFixed(2)}</p>
+                <br/>
+                {this.props.children}
             </div>
         );
     }
